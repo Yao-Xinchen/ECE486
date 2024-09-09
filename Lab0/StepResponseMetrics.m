@@ -32,8 +32,7 @@ function [Mp, tr, ts,MpIndex, t_10index,t_90index,tssIndex] = StepResponseMetric
 % Mp is the percentage overshoot -- so if the steady state value is 5.0 and
 % the maximum response is 7.5, Mp = 50%.  If the maximum response was 4.9,
 % Mp is 0.
-ss = 
-Mp = 
+Mp = 100 * (MaxResponse - ssVal) / ssVal;
  
 %tr
 % tr is the time required for the response to rise from 10% of the
@@ -41,7 +40,7 @@ Mp =
 % is useful here.  Type "helpwin find" to see how it works.  
 t_10index = find(  y > .1*ssVal, 1, 'first');
 % I've done the 10% index, you do the 90%:
-t_90index  = 
+t_90index  = find(  y > .9*ssVal, 1, 'first');
 tr = t(t_90index )-t(t_10index );
  
  
@@ -52,7 +51,7 @@ tr = t(t_90index )-t(t_10index );
 % forwards through the array until the response is no longer within the
 % 95-105% bounds.
 x = length(y); %initialize x to the end of the array
-while    %PLACE YOUR CONDITIONS HERE
+while y(x) > 1.05*ssVal || y(x) < .95*ssVal
     x = x-1;
 end
 ts = t(x)-t(yStartIndex);
@@ -100,13 +99,15 @@ line([t(t_90index);t(t_90index)],[0,y(t_90index)],...
  
 % YOU DOCUMENT tss IN THE SAME WAY AS tr AND Mp
 % document tss
-text(
-line(
+text(t(tssIndex),y(tssIndex),'\leftarrow t_{ss}',...
+    'HorizontalAlignment','left')
+line([t(tssIndex);t(tssIndex)],[0,y(tssIndex)],...
+    'Color','k','LineWidth',0.5,'LineStyle',':')
 
 title({'M_p, t_r, and t_s for a transfer function _{ECE 486}';date})
 % Label the axes:
-ylabel(  
-xlabel(
+ylabel('Response')
+xlabel('Time (s)')
 
 % make the plot line thicker
 hold on
