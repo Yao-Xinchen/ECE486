@@ -1,0 +1,11 @@
+# ignore Mac system files
+.DS_Store
+
+# ignore manuals and reports
+*.pdf
+*.docx
+*.doc
+
+# ignore simlink cache
+*/slprj/
+*.slxc
