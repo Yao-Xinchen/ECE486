@@ -51,7 +51,7 @@ tr = t(t_90index )-t(t_10index );
 % forwards through the array until the response is no longer within the
 % 95-105% bounds.
 x = length(y); %initialize x to the end of the array
-while y(x) > 1.05*ssVal || y(x) < .95*ssVal
+while y(x) < 1.05*ssVal && y(x) > .95*ssVal
     x = x-1;
 end
 ts = t(x)-t(yStartIndex);
