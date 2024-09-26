@@ -2,6 +2,8 @@ clear
 clc
 close all
 
+%#ok<*NASGU>
+
 % Controller 1
 K_p = 19.4;
 K_d = 0;
@@ -33,7 +35,7 @@ out4 = sim("lab3controller.slx");
 % Controller 3
 K_p = 19.4;
 K_d = 0.031;
-K_r = 0; %#ok<*NASGU>
+K_r = 0;
 w_r = 0;
 t_d = 1;
 out5 = sim("lab3controller.slx");
@@ -43,7 +45,8 @@ w_r = 1;
 t_d = 0;
 out6 = sim("lab3controller.slx");
 
-subplot(2, 1, 1)
+
+figure;
 plot(out1.tout, out1.w);
 hold on
 plot(out3.tout, out3.w);
@@ -54,7 +57,7 @@ xlabel("time, s")
 legend("Controller 1", "Controller 2", "Controller 3");
 hold off
 
-subplot(2, 1, 2)
+figure;
 plot(out2.tout, out2.w);
 hold on
 plot(out4.tout, out4.w);
