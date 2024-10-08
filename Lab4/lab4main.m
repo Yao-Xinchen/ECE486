@@ -5,12 +5,13 @@ close all;
 % part2
 
 ia = [0.26; 0.26; 0.27; 0.28; 0.29; 0.31; 0.33; 0.35;
--0.26; -0.27; -0.28; -0.28; -0.29; -0.30; -0.31; -0.33];
+    -0.26; -0.27; -0.28; -0.28; -0.29; -0.30; -0.31; -0.33];
 
 w = [68.37; 86.69; 104.36; 122.03; 139.37; 156.7; 174.05; 190.73;
--66.74; -85.06; -103.056; -120.722; -137.735; -154.747; -171.759; -189.1];
+    -66.74; -85.06; -103.056; -120.722; -137.735; -154.747; -171.759; -189.1];
 
-vi = [5; 6; 7; 8; 9; 10; 11; 12; -5; -6; -7; -8; -9; -10; -11; -12];
+vi = [5; 6; 7; 8; 9; 10; 11; 12;
+    -5; -6; -7; -8; -9; -10; -11; -12];
 
 x = [ia, w]\vi;
 ra = x(1);
@@ -49,13 +50,17 @@ vss = rs / (rs + ra);
 
 las = zeros(1, 6);
 
+figure
+hold on;
+
 for i = 1:6
     time = Elects{i}(:,1);
     voltage = Elects{i}(:,2);
-    index = find(voltage > 0.1);
+    index = find(voltage > 0.2);
     index = index(1);
     vss = max(voltage);
     ln = log(vss - voltage);
+    plot(time(index:800), ln(index:800));
     coeffs = polyfit(time(index:800), ln(index:800), 1);
     tau = -1 / coeffs(1);
     la = (ra + rs) * tau;
@@ -73,9 +78,11 @@ Iners = {Iner1; Iner2; Iner3; Iner4; Iner5; Iner6};
 % vis = {10, 11, 12, 13, 14, 15};
 
 js = zeros(1, 6);
+
+figure
 hold on;
 
-for i=1:6
+for i = 1:6
     time = Iners{i}(:,1);
     vtach = Iners{i}(:,2);
     omega = vtach / kv;
