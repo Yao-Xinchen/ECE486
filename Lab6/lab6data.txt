@@ -1,0 +1,27 @@
+y_max = 2.52
+y_ss = 2.66
+M_p = 5.83
+ss_error = 0.21
+
+t_start = 3.5
+t_90 = 27.5
+t_r = 24
+t_s = 90 - 3.5
+
+--------------
+
+y_max = 2.35
+y_ss = 2.32
+M_p = 1.3%
+ss_error = 0.13
+
+t_90 = 29.5
+t_s = 65.5
+
+---------------
+
+poles [-17.47, -0.844]
+zero -1.878
+gain 26.18
+time delay 0
+frequency scale 1
