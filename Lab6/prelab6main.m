@@ -7,8 +7,7 @@ k = 18;
 tao_m = 2/10;
 k_amp = 2.4;
 
-% --------------------------- b ---------------------------
-
+%% b
 % for k_c = 1
 k_c = 1;
 trans = tf([k_c*k_pot*k_amp*k], [tao_m, 1, 0]);
@@ -42,14 +41,14 @@ figure;
 bode(trans)
 title("Bode Plot for Desired w_c = 55")
 
-% --------------------------- c ---------------------------
+%% c
 k_c = 1;
 trans = tf([0.1*k_c, k_c], [0.01, 1]);
 figure;
 bode(trans)
 title("Bode Plot for G_c, with K_c = 1")
 
-% --------------------------- d ---------------------------
+%% d
 zeta = 0.5169;
 w_n = 55.4049;
 trans = tf([w_n^2], [1, 2*zeta*w_n, 0]);
@@ -89,7 +88,7 @@ figure;
 rlocus(g_c * g);
 title("Root Locus of G_c * G");
 
-% --------------------------- e ---------------------------
+%% e
 g_c = 0.4 * tf([1/2.3, 1], [1/92, 1]);
 figure;
 bode(g_c * g);
