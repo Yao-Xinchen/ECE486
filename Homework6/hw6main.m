@@ -2,6 +2,25 @@ clear;
 clc;
 close all;
 
+%% 2
+
+figure
+A = [0, 1; -2, -2];
+B = [0; 1];
+C = [1, 1];
+D = 0;
+
+K = [98, 27];
+
+obs_poles = [-25, -30];
+L = place(A', C', obs_poles)'
+
+s = tf('s');
+
+k_r = 100;
+tf = C*inv(eye(2)*s - (A - B*K))*B*k_r
+step(tf)
+
 %% 3b
 figure
 
